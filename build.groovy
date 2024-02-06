@@ -6,7 +6,7 @@ pipeline {
         stage('git commit') {
             steps {
                 echo 'clone repositery consist of build packages'
-                ' git branch: 'main', url: 'git@github.com:Prajakta27d/demo.git'
+                'https://github.com/Prajakta27d/demo.git'
                   }
              }
         stage('build') {
