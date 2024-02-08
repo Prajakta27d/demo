@@ -1,0 +1,37 @@
+pipeline
+{
+  agent {
+    label 'node1'
+        }
+          stages
+          {
+            stage ('Install Apache2')
+            {
+              steps
+              {
+                 sh '''sudo apt update
+                  sudo apt-get install apache2 -y
+                  sudo systemctl start apache2'''
+              }
+            }
+            stage ('Download & setup Webpage')
+            {
+              steps
+              {
+                sh '''wget https://www.free-css.com/assets/files/free-css-templates/download/page295/handtime.zip
+                         sudo apt-get install zip -y
+                        sudo unzip handtime.zip'''
+              }
+            }
+            stage ('Setup Configuration')
+            {
+              steps
+              {
+                  sh '''
+                      cd /var/www/html/
+                      sudo rm index.html
+                      cd /home/ubuntu/workspace/web_simple/handtime-html  /var/www/html '''
+              }
+            }
+          }
+}
